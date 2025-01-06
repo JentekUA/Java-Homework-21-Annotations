@@ -3,10 +3,6 @@ package app;
 import annotation.Author;
 import annotation.MethodInfo;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
-
 public class Main {
     public static void main(String[] args) {
         Class<ArrayUtils> clazz = ArrayUtils.class;
