@@ -1,9 +1,14 @@
 package app;
 
+import annotation.Author;
+import annotation.MethodInfo;
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class ArrayUtils {
+    @Author(firstName = "Oleksandr", lastName = "Aleksashyn", email = "oleksandr.aleksashyn@gmail.com")
+    @MethodInfo(name = "mergeSort", returnType = "void", description = "Performs sorting of inputted array using merge algorithm")
     public static void mergeSort(int[] array) {
         if (array.length < 2) {
             return;
@@ -19,6 +24,8 @@ public class ArrayUtils {
         merge(array, left, right);
     }
 
+    @Author(firstName = "John", lastName = "Dou", email = "test.test@gmail.com")
+    @MethodInfo(name = "binarySearch", returnType = "int", description = "Performs binary search of a given element on a given array")
     public static int binarySearch(int[] array, int target) throws NoSuchElementException {
         int left = 0;
         int right = array.length - 1;
