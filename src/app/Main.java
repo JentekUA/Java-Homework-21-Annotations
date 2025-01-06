@@ -1,21 +1,29 @@
 package app;
 
+import annotation.Author;
+import annotation.MethodInfo;
+
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class Main {
     public static void main(String[] args) {
-        int[] array = {38, 27, 43, 3, 9, 82, 10};
-        System.out.printf("Original array: %s\n", Arrays.toString(array));
+        Class<ArrayUtils> clazz = ArrayUtils.class;
 
-        ArrayUtils.mergeSort(array);
-        System.out.printf("Sorted array: %s\n", Arrays.toString(array));
+        for (var method : clazz.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(MethodInfo.class)) {
+                var methodInfo = method.getAnnotation(MethodInfo.class);
+                System.out.println("Method: " + methodInfo.name());
+                System.out.println("Return Type: " + methodInfo.returnType());
+                System.out.println("Description: " + methodInfo.description());
+            }
 
-        try {
-            var index = ArrayUtils.binarySearch(array, 38);
-            System.out.println("Target found. Index: " + index);
-        } catch (NoSuchElementException e){
-            System.out.println("Target not found");
+            if (method.isAnnotationPresent(Author.class)) {
+                var author = method.getAnnotation(Author.class);
+                System.out.println("Author: " + author.firstName() + " " + author.lastName() + " " + author.email());
+                System.out.println();
+            }
         }
     }
 }
